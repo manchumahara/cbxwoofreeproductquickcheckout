@@ -19,7 +19,7 @@ tutorial and customized as need.
 1. If free product without going to cart page it takes to checkout page directly on "add to cart"
 2. If free downloadable product then changes label from "Add to Cart" to "Download"
 3. If free downloadable product then changes Price from "$0.00" to "Free"
-4. Removes 'company', 'country', 'phone', 'address_1', 'address_2', 'city', 'state', 'postcode' from billing and shipping fields, remove their validation and required fielwds
+4. Removes 'company', 'country', 'phone', 'address_1', 'address_2', 'city', 'state', 'postcode' from billing and shipping fields, remove their validation and required fields
 
 == Changelog ==
 = 1.0.0 =
