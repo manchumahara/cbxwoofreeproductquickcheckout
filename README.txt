@@ -25,7 +25,7 @@ tutorial and customized as need.
 7. Disable customer email for free orders
 
 == Changelog ==
-= 1.0.0 =
+= 1.0.1 =
 * Allow guest checkout for free orders
 * Disable admin email for free orders
 * Disable customer email for free orders
