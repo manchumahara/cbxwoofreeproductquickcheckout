@@ -9,13 +9,13 @@
  *
  * @link              codeboxr.com
  * @since             1.0.0
- * @package           Cbxwpbookmark
+ * @package           cbxwoofreeproductquickcheckout
  *
  * @wordpress-plugin
  * Plugin Name:       CBX Woo Free Product Quick Checkout
  * Plugin URI:        https://github.com/manchumahara/cbxwoofreeproductquickcheckout
  * Description:       Quick checkout for woocommerce free products
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Codeboxr Team
  * Author URI:        https://codeboxr.com
  * License:           GPL-2.0+
@@ -31,7 +31,7 @@ if (!defined('WPINC')) {
 
 
 defined('CBXWOOFREEPRODUCTQUICKCHECKOUT_PLUGIN_NAME') or define('CBXWOOFREEPRODUCTQUICKCHECKOUT_PLUGIN_NAME', 'cbxwoofreeproductquickcheckout');
-defined('CBXWOOFREEPRODUCTQUICKCHECKOUT_PLUGIN_VERSION') or define('CBXWOOFREEPRODUCTQUICKCHECKOUT_PLUGIN_VERSION', '1.0.0');
+defined('CBXWOOFREEPRODUCTQUICKCHECKOUT_PLUGIN_VERSION') or define('CBXWOOFREEPRODUCTQUICKCHECKOUT_PLUGIN_VERSION', '1.0.1');
 defined('CBXWOOFREEPRODUCTQUICKCHECKOUT_BASE_NAME') or define('CBXWOOFREEPRODUCTQUICKCHECKOUT_BASE_NAME', plugin_basename(__FILE__));
 defined('CBXWOOFREEPRODUCTQUICKCHECKOUT_ROOT_PATH') or define('CBXWOOFREEPRODUCTQUICKCHECKOUT_ROOT_PATH', plugin_dir_path(__FILE__));
 defined('CBXWOOFREEPRODUCTQUICKCHECKOUT_ROOT_URL') or define('CBXWOOFREEPRODUCTQUICKCHECKOUT_ROOT_URL', plugin_dir_url(__FILE__));
@@ -75,6 +75,11 @@ class CBXWooFreeProductQuickCheckout{
 		add_filter( 'woocommerce_checkout_fields', array($this, 'custom_override_checkout_fields'), 9999 );
 		add_filter( 'woocommerce_default_address_fields', array($this,  'custom_override_default_address_fields'), 9999 );
 		add_filter('woocommerce_add_to_cart_redirect', array($this, 'redirect_add_to_cart'));
+
+		//guest checkout
+		add_filter( 'pre_option_woocommerce_enable_guest_checkout', array($this, 'enable_guest_checkout_based_on_product') );
+		add_filter( 'woocommerce_email_enabled_new_order', array($this, 'disable_email_new_order'), 10, 2 );
+		add_filter( 'woocommerce_email_recipient_customer_completed_order', array($this, 'product_cat_avoid_processing_email_notification'), 10, 2 );
 	}//end of constructor
 
 	/**
@@ -246,6 +251,67 @@ class CBXWooFreeProductQuickCheckout{
 		}
         return wc_get_checkout_url();
 	}//end method redirect_add_to_cart
+
+	/**
+	 * Allow guest checkout for free orders
+	 *
+	 * @param $value
+	 *
+	 * @return string
+	 */
+	public function enable_guest_checkout_based_on_product($value){
+		if ( WC()->cart && WC()->cart->needs_payment() ) {
+			return $value;
+		}
+
+		return "yes";
+	}
+
+	/**
+	 * Disable amdin email for new order
+	 *
+	 * @param $enabled
+	 * @param $order
+	 *
+	 * @return bool
+	 */
+	public function disable_email_new_order($enabled, $order){
+		if ($order instanceof WC_Order) {
+
+			$order_total = floatval($order->get_total());
+
+			if ($order_total == 0) {
+				return false;
+			}
+
+		}
+
+		return $enabled;
+	}//end method disable_email_new_order
+
+	/**
+	 * Disable customer email for free order
+	 *
+	 * @param $recipient
+	 * @param $order
+	 *
+	 * @return string
+	 */
+	public function product_cat_avoid_processing_email_notification( $recipient, $order ) {
+		if( is_admin() ) return $recipient;
+
+		if ($order instanceof WC_Order) {
+
+			$order_total = floatval($order->get_total());
+
+			if ($order_total == 0) {
+				return '';
+			}
+
+		}
+
+		return $recipient;
+	}//end emthod product_cat_avoid_processing_email_notification
 
 }//end class CBXWooFreeProductQuickCheckout
 

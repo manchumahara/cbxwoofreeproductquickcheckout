@@ -3,7 +3,7 @@ Contributors: codeboxr, manchumahara
 Tags: woocommerce
 Requires at least: 3.0
 Tested up to: 5.2.3
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,7 +20,15 @@ tutorial and customized as need.
 2. If free downloadable product then changes label from "Add to Cart" to "Download"
 3. If free downloadable product then changes Price from "$0.00" to "Free"
 4. Removes 'company', 'country', 'phone', 'address_1', 'address_2', 'city', 'state', 'postcode' from billing and shipping fields, remove their validation and required fields
+5. Allow guest checkout for free orders
+6. Disable admin email for free orders
+7. Disable customer email for free orders
 
 == Changelog ==
+= 1.0.0 =
+* Allow guest checkout for free orders
+* Disable admin email for free orders
+* Disable customer email for free orders
+
 = 1.0.0 =
 * First release
