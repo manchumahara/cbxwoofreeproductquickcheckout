@@ -80,6 +80,7 @@ class CBXWooFreeProductQuickCheckout {
 		add_filter( 'pre_option_woocommerce_enable_guest_checkout', array( $this, 'enable_guest_checkout_based_on_product' ) );
 		add_filter( 'woocommerce_email_enabled_new_order', array( $this, 'disable_email_new_order' ), 10, 2 );
 		add_filter( 'woocommerce_email_recipient_customer_completed_order', array( $this, 'product_cat_avoid_processing_email_notification' ), 10, 2 );
+		add_filter( 'woocommerce_email_recipient_customer_processing_order', array( $this, 'product_cat_avoid_processing_email_notification' ), 10, 2 );
 
 		//add fields to advance tab
 		add_filter( 'woocommerce_get_sections_advanced', array( $this, 'freequick_add_section' ) );
@@ -137,7 +138,7 @@ class CBXWooFreeProductQuickCheckout {
 	 */
 	public function change_add_to_cart_button( $button_text, $product ) {
 		if ( ( '' === $product->get_price() || 0 == $product->get_price() ) && $product->is_downloadable( 'yes' ) ) {
-			$addtocartlabel = get_option('cbxwfpquickcheckout_addtocartlabel', '');
+			$addtocartlabel = sanitize_text_field(get_option('cbxwfpquickcheckout_addtocartlabel', ''));
 			if($addtocartlabel != ''){
 				$button_text = esc_html($addtocartlabel);
 			}
@@ -156,7 +157,7 @@ class CBXWooFreeProductQuickCheckout {
 	 */
 	public function price_free_zero_empty( $price, $product ) {
 		if ( '' === $product->get_price() || 0 == $product->get_price() ) {
-			$freeprice = get_option('cbxwfpquickcheckout_freeprice', '');
+			$freeprice = sanitize_text_field(get_option('cbxwfpquickcheckout_freeprice', ''));
 			if($freeprice != ''){
 				$price = '<span class="woocommerce-Price-amount woocommerce-Price-amount-free amount">' . esc_html($freeprice). '</span>';
 			}
@@ -170,7 +171,7 @@ class CBXWooFreeProductQuickCheckout {
 			return $bool;
 		}
 
-		$remove_note_field = get_option('cbxwfpquickcheckout_remove_note_field', 'no');
+		$remove_note_field = sanitize_text_field(get_option('cbxwfpquickcheckout_remove_note_field', 'no'));
 		if($remove_note_field == 'yes') return false;
 
 
@@ -188,7 +189,7 @@ class CBXWooFreeProductQuickCheckout {
 			return $fields;
 		}
 
-		$remove_billing_fields = get_option('cbxwfpquickcheckout_remove_billing_fields', 'no');
+		$remove_billing_fields = sanitize_text_field(get_option('cbxwfpquickcheckout_remove_billing_fields', 'no'));
 
 		if($remove_billing_fields == 'yes'){
 			// add or remove billing fields you do not want
@@ -238,7 +239,7 @@ class CBXWooFreeProductQuickCheckout {
 			return $address_fields;
 		}
 
-		$remove_billing_fields = get_option('cbxwfpquickcheckout_remove_billing_fields', 'no');
+		$remove_billing_fields = sanitize_text_field(get_option('cbxwfpquickcheckout_remove_billing_fields', 'no'));
 		if($remove_billing_fields == 'yes'){
 			$fields = array(
 				'company',
@@ -273,7 +274,7 @@ class CBXWooFreeProductQuickCheckout {
 			return wc_get_cart_url();
 		}
 
-		$redirect_checkout = get_option('cbxwfpquickcheckout_redirect_checkout', 'no');
+		$redirect_checkout = sanitize_text_field(get_option('cbxwfpquickcheckout_redirect_checkout', 'no'));
 		if($redirect_checkout == 'yes') return wc_get_checkout_url();
 
 		return wc_get_cart_url();
@@ -292,7 +293,7 @@ class CBXWooFreeProductQuickCheckout {
 			return $value;
 		}
 
-		$guest_checkout = get_option('cbxwfpquickcheckout_guest_checkout', 'no');
+		$guest_checkout = sanitize_text_field(get_option('cbxwfpquickcheckout_guest_checkout', 'no'));
 		if($guest_checkout == 'yes') return 'yes';
 
 		return $value;
@@ -312,7 +313,7 @@ class CBXWooFreeProductQuickCheckout {
 			$order_total = floatval( $order->get_total() );
 
 			if ( $order_total == 0 ) {
-				$admin_neworder = get_option('cbxwfpquickcheckout_admin_neworder', 'no');
+				sanitize_text_field($admin_neworder = get_option('cbxwfpquickcheckout_admin_neworder', 'no'));
 				if($admin_neworder == 'yes') return false;
 			}
 
@@ -334,12 +335,15 @@ class CBXWooFreeProductQuickCheckout {
 			return $recipient;
 		}
 
+
+
 		if ( $order instanceof WC_Order ) {
 
 			$order_total = floatval( $order->get_total() );
 
 			if ( $order_total == 0 ) {
-				$customer_ordercomplete = get_option('cbxwfpquickcheckout_customer_ordercomplete', 'no');
+				$customer_ordercomplete = sanitize_text_field(get_option('cbxwfpquickcheckout_customer_ordercomplete', 'no'));
+
 				if($customer_ordercomplete == 'yes' ) return '';
 			}
 
@@ -429,7 +433,7 @@ class CBXWooFreeProductQuickCheckout {
 
 			$settings_slider[] = array(
 				'name'     => esc_html__( 'Change Add to Cart Label','cbxwfpquickcheckout' ),
-				'desc'     => esc_html__( 'Keep empty to ignore', 'cbxwfpquickcheckout' ),
+				'desc'     => esc_html__( 'For only downloadable product, Keep empty to ignore', 'cbxwfpquickcheckout' ),
 				'id'       => 'cbxwfpquickcheckout_addtocartlabel',
 				'type'     => 'text',
 				'default'  => esc_html__('Download', 'cbxwfpquickcheckout')

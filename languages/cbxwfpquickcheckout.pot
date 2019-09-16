@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CBX Woo Free Product Quick Checkout\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-15 17:46+0000\n"
+"POT-Creation-Date: 2019-09-16 04:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,91 +16,94 @@ msgstr ""
 "X-Loco-Version: 2.3.0; wp-5.2.3"
 
 #. Name of the plugin
-#: cbxwoofreeproductquickcheckout.php:359
+#: cbxwoofreeproductquickcheckout.php:363
 msgid "CBX Woo Free Product Quick Checkout"
 msgstr ""
 
-#: cbxwoofreeproductquickcheckout.php:371
+#: cbxwoofreeproductquickcheckout.php:375
 msgid "CBX Woo Free Product Quick Checkout Settings"
 msgstr ""
 
-#: cbxwoofreeproductquickcheckout.php:431
-msgid "Change Add to Cart Label"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:423
-msgid "Change Price for Free Product"
-msgstr ""
-
-#. Author of the plugin
-msgid "Codeboxr Team"
-msgstr ""
-
 #: cbxwoofreeproductquickcheckout.php:378
-#: cbxwoofreeproductquickcheckout.php:385
-msgid "Disable"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:435
-msgid "Download"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:389
-msgid "Enable Guest Checkout"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:427
-msgid "Free"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:413
-msgid "Hide Billing & Shipping Fields"
-msgstr ""
-
-#. Author URI of the plugin
-msgid "https://codeboxr.com"
-msgstr ""
-
-#. URI of the plugin
-msgid "https://github.com/manchumahara/cbxwoofreeproductquickcheckout"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:405
-msgid "Ignore Cart Page, Redirect to Checkout"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:424
-#: cbxwoofreeproductquickcheckout.php:432
-msgid "Keep empty to ignore"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:374
 msgid "New Order Email for Admin"
 msgstr ""
 
-#: cbxwoofreeproductquickcheckout.php:381
+#: cbxwoofreeproductquickcheckout.php:382
+#: cbxwoofreeproductquickcheckout.php:389
+msgid "Disable"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:385
 msgid "Order Complete Email for Customer"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:393
+msgid "Enable Guest Checkout"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:397
+#: cbxwoofreeproductquickcheckout.php:405
+#: cbxwoofreeproductquickcheckout.php:413
+#: cbxwoofreeproductquickcheckout.php:421
+msgid "Yes"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:401
+msgid "Remove Note Field"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:409
+msgid "Ignore Cart Page, Redirect to Checkout"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:417
+msgid "Hide Billing & Shipping Fields"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:427
+msgid "Change Price for Free Product"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:428
+msgid "Keep empty to ignore"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:431
+msgid "Free"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:435
+msgid "Change Add to Cart Label"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:436
+msgid "For only downloadable product, Keep empty to ignore"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:439
+msgid "Download"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:464
+msgid "View settings"
+msgstr ""
+
+#: cbxwoofreeproductquickcheckout.php:464
+msgid "Settings"
 msgstr ""
 
 #. Description of the plugin
 msgid "Quick checkout for woocommerce free products"
 msgstr ""
 
-#: cbxwoofreeproductquickcheckout.php:397
-msgid "Remove Note Field"
+#. URI of the plugin
+msgid "https://github.com/manchumahara/cbxwoofreeproductquickcheckout"
 msgstr ""
 
-#: cbxwoofreeproductquickcheckout.php:460
-msgid "Settings"
+#. Author of the plugin
+msgid "Codeboxr Team"
 msgstr ""
 
-#: cbxwoofreeproductquickcheckout.php:460
-msgid "View settings"
-msgstr ""
-
-#: cbxwoofreeproductquickcheckout.php:393
-#: cbxwoofreeproductquickcheckout.php:401
-#: cbxwoofreeproductquickcheckout.php:409
-#: cbxwoofreeproductquickcheckout.php:417
-msgid "Yes"
+#. Author URI of the plugin
+msgid "https://codeboxr.com"
 msgstr ""
